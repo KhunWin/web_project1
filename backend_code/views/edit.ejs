@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+            <!-- for path navigation -->
+        <style> 
+            .rectangle-box {
+                width: 20rem;
+                height: 50px;
+                background-color: lightgray;
+                padding: 10px;
+                margin-top: 10px;
+                text-align: center;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <!-- navigation bar -->
+        <div class="container-fluid">
+            <div class="navbar row py-2 align-items-center" style="margin-top: 3.1rem; margin-left: 2.3rem;">
+                <div class="logo col-md-auto">Navbar</div>
+                <ul class="nav col-md">
+                    <li class="nav-item">
+                        <a class="nav-link text-muted" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/event">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted" href="/become/volunteer">Become volunteer</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- showing path -->
+        <div class="container-fluid">    
+            <div class="container">
+                <div class="row my-4">
+                    <div class="col-6 px-0">
+                        <div class="rectangle-box">
+                            <a style="text-decoration: none;" href="/">Home</a>
+                            <span>/</span>
+                            <a style="text-decoration: none;" href="/event">Event</a>
+                            <span>/</span>
+                            <a style="text-decoration: none; color:black;" href="/event">Edit event</a>
+                        </div>
+                    </div>
+            
+                    <!-- Delete column to the right -->
+                    <div class="col-6">
+                        <a class="btn btn-danger" style="float:right;" href="/event/delete/<%= event._id %>">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        
+
+        <div class="container mt-4">
+            <form action="/event/edit/<%=event._id %>" method="POST">
+             
+                <div class="row">
+                    <form>
+                        <!-- the left column -->
+                    <div class="col-6">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Event title</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="eventTitle" value="<%= event.eventTitle %>" id="eventtitle" required>
+                        </div>
+                        <div class="col-sm-10">
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">Organizer</label>
+                            <input type="text" class="form-control" name="organizerName" value="<%= event.organizerName %>"id="organizer" required>
+                        </div>
+                        <div class="col-sm-10">
+                            <label for="inputPassword3" class="col-sm-2 col-form-label">Datetime</label>
+                            <input id="datetimeInput" type="datetime-local" name="eventDate" value="<%= event.eventTitle %>"class="form-control" required>
+
+                        </div>
+                        <div class="col-sm-10">
+                            <label for="inputLocation" class="col-sm-2 col-form-label">Location</label>
+                            <input id="eventLocation" type="text" name="location" value="<%= event.location %>" class="form-control">
+
+                        </div>
+
+                        
+                    </div>
+                    <!-- the right column -->
+                    <div class="col-6">
+                        <label for="exampleFormControlTextarea1">Description</label>
+                        <textarea class="form-control" id="descriptionForm" name="eventDesc" value="<%=event.eventDesc %>" rows="5"></textarea>
+
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Quota</label>
+                        <input type="number" class="form-control" name="quotaNum" id="quotaNum" value="<%event.quotaNum%>" required>
+
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Image</label>
+                        <input type="url" class="form-control" name="imageURL" id="imageURL" value="<%event.imageURL %>" required>
+
+
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <div class="offset-sm-0">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="highlightY" id="highlightY">
+                                <label class="form-check-label" for="gridCheck1">
+                                    Highlight
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save button to the right -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 offset-md-6 text-right">
+                                <button type="submit" class="btn btn-primary" style="float:right;">Save</button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+
+    </body>
+
+
+</html>
